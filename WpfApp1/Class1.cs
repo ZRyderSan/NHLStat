@@ -12,9 +12,9 @@ namespace WpfApp1
     {
         string inser = "INSERT INTO Teams Values(NULL,\"Dinamo.M\",NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)";
         //string selec = "SELECT * FROM List";
-        public void sqlC()
+        public void sqlC(string Team)
         {
-            string cstring = "Data Source=C:\\Users\\dsank\\Desktop\\каледж\\БАЗА\\db.db";
+            string cstring = "Data Source=\\db.db";
             using (var constr = new SQLiteConnection())
             {
                 SQLiteCommand command = new SQLiteCommand(inser, constr);

@@ -44,5 +44,11 @@ namespace WpfApp1
         {
             ImageConvert();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Class1 cq = new Class1();
+            cq.sqlC(ChoseNam.Text);
+        }
     }
 }

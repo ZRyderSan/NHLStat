@@ -18,12 +18,14 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Border Grid.RowSpan="3" Grid.ColumnSpan="3" Background="AliceBlue"></Border>
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBlock HorizontalAlignment="Center">Введите название команды</TextBlock>
-            <TextBlock x:Name="ChoseNam" Background="White"></TextBlock>
-            <Button x:Name="ChoseImg" Background="White" Margin="0,20,0,0" Click="ChoseImg_Click">Выберите логотип</Button>
-            <Image Stretch="Fill" x:Name="LogoShow" Height="150" Width="210"></Image>
+        <Border Grid.ColumnSpan="3" Grid.RowSpan="3" Background="Blue" Opacity="1"></Border>
+        <Image Stretch="Fill" Grid.RowSpan="3" Grid.ColumnSpan="3" Opacity="0.8" Source="/BackIma.jpg"></Image>
+        <StackPanel VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Background="White" Opacity="0.95">
+            <TextBlock Margin="20" HorizontalAlignment="Center">Введите название команды</TextBlock>
+            <TextBox Margin="10" x:Name="ChoseNam" Background="White"></TextBox>
+            <Button x:Name="ChoseImg" Background="White" Margin="20,20,20,0" Click="ChoseImg_Click">Выберите логотип</Button>
+            <Image Stretch="Fill" x:Name="LogoShow" Height="100" Width="125"></Image>
+            <Button Click="Button_Click">Заполнить</Button>
         </StackPanel>
     </Grid>
 </Page>
