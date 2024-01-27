@@ -23,6 +23,8 @@ namespace WpfApp1
     public partial class Page1 : Page
     {
         Array buf;
+        string path;
+
         public Page1()
         {
             InitializeComponent();
@@ -31,7 +33,7 @@ namespace WpfApp1
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.ShowDialog();
-            string path = ofd.FileName;
+            path = ofd.FileName;
             BitmapImage ima = new BitmapImage();
             ima.BeginInit();
             ima.UriSource = new Uri(path);
@@ -42,13 +44,14 @@ namespace WpfApp1
 
         private void ChoseImg_Click(object sender, RoutedEventArgs e)
         {
-            ImageConvert();
+            LogoShow.Source = ImageConvert();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Class1 cq = new Class1();
-            cq.sqlC(ChoseNam.Text);
+            byte[]imdata = File.ReadAllBytes(path);
+            cq.sqlC(ChoseNam.Text, imdata);
         }
     }
 }
