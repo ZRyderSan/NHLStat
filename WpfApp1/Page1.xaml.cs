@@ -27,7 +27,7 @@ namespace WpfApp1
         {
             InitializeComponent();
         }
-        public void ImageConvert()
+        public BitmapImage ImageConvert()
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.ShowDialog();
@@ -36,7 +36,7 @@ namespace WpfApp1
             ima.BeginInit();
             ima.UriSource = new Uri(path);
             ima.EndInit();
-            LogoShow.Source = ima;
+            return ima;
             
         }
 
