@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using System.Data.SQLite;
+using System.IO;
+using System.Windows;
 
 namespace WpfApp1
 {
@@ -13,18 +15,36 @@ namespace WpfApp1
     {
         
         //string selec = "SELECT * FROM List";
-        public void sqlC(string Team, byte[] ima)
+        public void sqlC(string Team, string ima)
         {
-            string gg = Environment.CurrentDirectory;
-            gg = gg.Substring(0,gg.Length-24);
-            string cstring = "Data Source="+gg+"db.db";
-            string inser = "INSERT INTO Team Values(NULL,\""+Team+"\",\""+ima+ "\",NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)";
+            
             using (var constr = new SQLiteConnection())
             {
+                string finalfile = CurDir() + "TeamLogos" + "\\" + Team + ".png";
+                string inser = "INSERT INTO Team Values(NULL,\"" + Team + "\",\"" + finalfile + "\",NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)";
                 SQLiteCommand command = new SQLiteCommand(inser, constr);
-                constr.ConnectionString = cstring;
+                constr.ConnectionString = ConStrin();
+                if (CheckExist(finalfile)==true)
+                {
+                    MessageBox.Show("Дакая команда уже существует");
+                    return;
+                }
+                else
+                {
+                    if (Directory.Exists(CurDir() + "\\TeamLogos"))
+                    {
+                        File.Copy(ima, finalfile);
+                    }
+                    else
+                    {
+                        Directory.CreateDirectory(CurDir() + "\\TeamLogos");
+                        File.Copy(ima, finalfile);
+                    }
+                }
                 constr.Open();
                 SQLiteDataReader read = command.ExecuteReader();
+                MessageBox.Show("Команда успешно добавлена", "Оповещение", MessageBoxButton.OK);
+                
 
             }
         }
@@ -40,6 +60,32 @@ namespace WpfApp1
                 SQLiteDataReader reader = command.ExecuteReader();
 
             }
+        }
+        private string CurDir()
+        {
+            string gg = Environment.CurrentDirectory;
+            gg = gg.Substring(0, gg.Length - 24);
+            return gg;
+        }
+        private string ConStrin()
+        {
+            string gg = Environment.CurrentDirectory;
+            gg = gg.Substring(0, gg.Length - 24);
+            gg = "Data Source=" + gg + "\\db.db";
+            return gg;
+        }
+        private bool CheckExist(string file)
+        {
+            bool itog;
+            if (System.IO.File.Exists(file))
+            {
+                itog = true;
+            }
+            else
+            {
+                itog = false;
+            }
+            return itog;
         }
     }
 }

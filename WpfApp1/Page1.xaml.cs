@@ -50,8 +50,7 @@ namespace WpfApp1
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Class1 cq = new Class1();
-            byte[]imdata = File.ReadAllBytes(path);
-            cq.sqlC(ChoseNam.Text, imdata);
+            cq.sqlC(ChoseNam.Text, path);
         }
     }
 }
