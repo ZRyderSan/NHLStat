@@ -10,11 +10,12 @@ namespace WpfApp1
 {
     internal class Class1
     {
-        string inser = "INSERT INTO Teams Values(NULL,\"Dinamo.M\",NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)";
+        
         //string selec = "SELECT * FROM List";
         public void sqlC(string Team)
         {
             string cstring = "Data Source=\\db.db";
+            string inser = $"INSERT INTO Teams Values(NULL,{0},{1},NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL)";{Team};;
             using (var constr = new SQLiteConnection())
             {
                 SQLiteCommand command = new SQLiteCommand(inser, constr);
